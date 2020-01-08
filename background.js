@@ -6,6 +6,15 @@ chrome.runtime.onInstalled.addListener(function() {
     });
 });
 
+function sendMessage(json) {
+  chrome.tabs.query({active: true, currentWindow: true},
+    function callback(tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, json, function (response) {});
+      chrome.runtime.sendMessage(json, function (response){});
+    }
+  );
+}
+
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
     if (info.menuItemId === "menu1") { // here's where you'll need the ID
       var data = new FormData();
@@ -22,6 +31,9 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
         // redirect: 'follow', // manual, *follow, error
         // referrerPolicy: 'no-referrer', // no-referrer, *client
         body: data
-      }).then(response => response.text()).then(data => { alert(data); });
+      }).then(response => response.text()).then(data => { 
+        sendMessage({'highlighted_text': data});
+        // alert(data);
+      });
     }
 });
