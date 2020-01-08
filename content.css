@@ -34,18 +34,21 @@
   top: 2px;
   width: 16px;
   height: 16px;
+  opacity: 0.8;
 }
 
 #podsvechnik_tooltip_close_button:hover {
+  opacity: 1;
   cursor: pointer;
 }
 
 #podsvechnik_tooltip_close_button:before, #podsvechnik_tooltip_close_button:after {
   position: absolute;
   left: 0px;
+  top: 2px;
   content: ' ';
   height: 17px;
-  width: 3px;
+  width: 2px;
   background-color: red;
 }
 
