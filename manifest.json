@@ -2,8 +2,7 @@
   "name": "English syntax highlighter",
   "version": "1.0",
   "description": "Podsvechnik - English syntax highlighter",
-  "permissions": ["activeTab", "declarativeContent", "storage", "contextMenus"],
-  "options_page": "options.html",
+  "permissions": ["activeTab", "contextMenus"],
   "background": {
     "scripts": ["background.js"],
     "persistent": false
