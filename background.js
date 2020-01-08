@@ -1,7 +1,7 @@
 chrome.runtime.onInstalled.addListener(function() {
     chrome.contextMenus.create({
-        title: 'Podsvechnik',
-        id: 'menu1', // you'll use this in the handler function to identify this context menu item
+        title: 'Highlight the selection',
+        id: 'podsvechnik',
         contexts: ['all'],
     });
 });
@@ -16,24 +16,16 @@ function sendMessage(json) {
 }
 
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
-    if (info.menuItemId === "menu1") { // here's where you'll need the ID
+    if (info.menuItemId === "podsvechnik") {
       var data = new FormData();
       data.append('text', info.selectionText);
 
       fetch('https://english.edward.io/parse', {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'no-cors', // no-cors, *cors, same-origin
-        // credentials: 'same-origin', // include, *same-origin, omit
-        headers: {
-          // 'Content-Type': 'application/json'
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        // redirect: 'follow', // manual, *follow, error
-        // referrerPolicy: 'no-referrer', // no-referrer, *client
+        method: 'POST',
+        mode: 'no-cors',
         body: data
       }).then(response => response.text()).then(data => { 
         sendMessage({'highlighted_text': data});
-        // alert(data);
       });
     }
 });

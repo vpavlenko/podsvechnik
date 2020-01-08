@@ -1,7 +1,7 @@
 {
-  "name": "Getting Started Example",
+  "name": "English syntax highlighter",
   "version": "1.0",
-  "description": "Build an Extension!",
+  "description": "Podsvechnik - English syntax highlighter",
   "permissions": ["activeTab", "declarativeContent", "storage", "contextMenus"],
   "options_page": "options.html",
   "background": {
