@@ -18,7 +18,7 @@ function sendMessage(json) {
 chrome.contextMenus.onClicked.addListener(function(info, tab) {
     if (info.menuItemId === "podsvechnik") {
       var data = new FormData();
-      data.append('text', info.selectionText);
+      data.append('text', info.selectionText.replace(/  +/g, "<br><br>"));
 
       fetch('https://english.edward.io/parse', {
         method: 'POST',
